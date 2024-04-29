@@ -1,0 +1,71 @@
+#let maketitle(
+  title: [Default Title],
+  title_fontsize: 17pt,
+  corners: ()
+) = {
+  let top-left = corners.at(0)
+  let top-right = corners.at(1)
+  let bot-left = corners.at(2)
+  let bot-right = corners.at(3)
+  
+  rect()[
+    #align( left + horizon, [ #top-left #h(1fr) #top-right] )
+
+    #set align(center)
+    #text(title_fontsize, title)
+
+    #align( left + horizon, [ #bot-left #h(1fr) #bot-right ] )
+  ]
+
+}
+
+#let abstract(
+  abstract: [],
+  keywords: ()
+) = {
+  par(justify: false)[
+    *Abstract* \
+    #abstract
+  ]
+}
+
+#let conf(
+  body
+) = {
+  maketitle(title: [Rinko paper], title_fontsize: 17pt, corners: ("test1", "test2", "test3", "test4"))
+
+  columns(2, [#body])
+}
+
+#show: body => conf(body)
+
+#abstract(abstract: lorem(50))
+
+= Introduction
+#lorem(90)
+
+= Related Works
+#lorem(120)
+
+= Methods
+#lorem(240)
+
+== Details
+#lorem(120)
+
+= Results
+#lorem(30)
+== Experiment 1
+#lorem(100)
+== Experiment 2
+#lorem(100)
+
+= Discussion
+#lorem(30)
+== Experiment 1
+#lorem(100)
+== Experiment 2
+#lorem(100)
+
+= Conclusions and Future Works
+#lorem(50)
